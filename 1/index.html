@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="styles/style.css" rel="stylesheet">
+	<title>Регистрация пользователя</title>
+</head>
+<body>
+	<h1>Регистрация пользователя</h1>
+	<div class="registration"> 
+		<form action="complete.html" method="post">	
+				<p>Имя:</p>
+				<input type="text" name="firstName" required placeholder="Ваше имя">
+
+				<p>Фамилия:</p>
+				<input type="text" name="lastName" required placeholder="Ваша фамилия">
+
+				<p>Почта:</p>
+				<input type="email" name="userEmail" required placeholder="Ваш E-mail">
+
+				<hr>
+				<p>Курсы:</p>
+				<input type="radio" name="courses" value="drupal 7" required> Drupal 7 <br>
+				<input type="radio" name="courses" value="drupal 8" required> Drupal 8 <br>
+			
+				<p>Дополнительная информация:</p>
+				<textarea name="info" required rows="15"></textarea>
+
+				<input class="button" type="submit" value="Отправить">
+				<input class="button" type="reset" value="Очистить">			
+		</form>
+	</div>
+</body>
+</html>
