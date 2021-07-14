@@ -1,0 +1,27 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	margin: 30px;
+}
+
+input {
+	margin-top: 15px;
+}
+
+p {
+	margin: 0;
+}
+
+.container {
+	width: 400px;
+	border: 1px solid #000;
+	margin: 30px;
+	padding: 20px;
+}
+
+.hidden {
+	visibility: hidden;
+}
