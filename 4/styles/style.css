@@ -1,0 +1,38 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	margin: 20px 30px;
+}
+
+hr {
+	margin: 20px 0;
+}
+
+label {
+	font-size: 18px;
+}
+
+input[type='text'] {
+	width: 300px;
+	margin-left: 15px;
+}
+
+.text span {
+	font-weight: bold;
+	color: blue;
+}
+
+.form {
+	width: 500px;
+	margin: 30px;
+}
+
+.text {
+	width: 500px;
+	margin: 20px 30px;
+	font-size: 18px;
+}
+
