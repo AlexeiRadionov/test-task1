@@ -1,5 +1,5 @@
 <?php
-session_start();
+	session_start();
 	if (!isset($_SESSION['text'])) {
 		$text = file_get_contents('templates/text.tpl');
 	} else {
