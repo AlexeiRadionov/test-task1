@@ -1,5 +1,11 @@
 <?php
-	$text = file_get_contents('templates/text.tpl');
+session_start();
+	if (!isset($_SESSION['text'])) {
+		$text = file_get_contents('templates/text.tpl');
+	} else {
+		$text = $_SESSION['text'];
+		$_SESSION['text'] = null;
+	}
 
 	if (isset($_POST['send'])) {
 		$string = $_POST['string'];
@@ -15,7 +21,10 @@
 			$pattern[] = $value;			
 		}
 
-		$text = preg_replace($pattern, $replacement, $text);		
+		$text = preg_replace($pattern, $replacement, $text);
+		$_SESSION['text'] = $text;
+		
+		header('Location: /');		
 	}	
 ?>
 
