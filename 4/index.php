@@ -24,7 +24,7 @@ session_start();
 		$text = preg_replace($pattern, $replacement, $text);
 		$_SESSION['text'] = $text;
 		
-		header('Location: /');		
+		header('Location: index.php');		
 	}	
 ?>
 
