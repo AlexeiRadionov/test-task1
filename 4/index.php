@@ -11,20 +11,42 @@
 		$string = $_POST['string'];
 		$string = strip_tags($string);
 
+		//парсим строку для получения массива слов или словосочетаний в двойных кавычках
 		$userString = str_getcsv($string, " ");
 
-		foreach ($userString as $key => $value) {
-			$newValue = '<span>' . $value . '</span>';
-			$replacement[] = $newValue;
-
-			$value = '/\b(' . $value . ')\b/i';
-			$pattern[] = $value;			
-		}
-
-		$text = preg_replace($pattern, $replacement, $text);
-		$_SESSION['text'] = $text;
+		$match = [];
 		
-		header('Location: index.php');		
+		foreach ($userString as $value) {
+			//если пользователь ввёл не слово, а другие символы, пропускаем это значение из массива
+			if (preg_match('/\w/u', $value)) {
+				//ищем совпадения каждого значения с базовым шаблоном по регулярному выражению без учёта регистра (флаг i) и получаем массив совпадений $matches. Чтобы можно было работать и с русским и с англ. текстом добавляем (флаг u)
+				preg_match_all('/\b(' . $value . ')\b/iu', $text, $matches);
+				
+				//так как слов в поиске может быть несколько, добавляем все совпадения по каждому слову в массив $match
+				foreach ($matches[0] as $elem) {
+					$match[] = $elem;
+				}		
+			}	
+		}
+		
+		//если совпадения есть - массив не пустой
+		if (count($match)) {
+			foreach ($match as $value) {
+				//формируем новое значение для замены в шаблоне и помещаем в массив замен. Чтобы после замены слов в шаблоне на подсвеченные сохранился регистр букв, берём значения $value, полученные ранее из базового шаблона - массив $match, а не из строки поиска
+				$newValue = '<span>' . $value . '</span>';
+				$replacement[] = $newValue;
+
+				//формируем регулярные выражения для замен и добавляем в массив $pattern  
+				$value = '/\b(' . $value . ')\b/u';
+				$pattern[] = $value;
+			}
+
+			$text = preg_replace($pattern, $replacement, $text);			
+			$_SESSION['text'] = $text;
+		}
+		
+		header('Location: index.php');
+				
 	}	
 ?>
 
